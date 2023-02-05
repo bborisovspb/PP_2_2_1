@@ -6,6 +6,7 @@ import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.TypedQuery;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,7 +37,10 @@ public class MainApp {
       user3.setCar(car3);
       userService.add(user3);
 
-
+      User user4 = new User("Jason", "Statham", "user4@mail.ru");
+      Car car4 = new Car("Renault", 700);
+      user4.setCar(car4);
+      userService.add(user4);
 
 
 
@@ -49,8 +53,10 @@ public class MainApp {
          System.out.println("Email = "+user.getEmail());
          System.out.println();
       }
-
+      System.out.println(userService.getUserByCar("Renault", 200));
+      System.out.println(userService.listCars("Renault"));
       context.close();
+
+
    }
 }
-//   CREATE TABLE IF NOT EXISTS users (id BIGINT PRIMARY KEY AUTO_INCREMENT, firstname VARCHAR(255), lastName VARCHAR(255), email VARCHAR(255))
